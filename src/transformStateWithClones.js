@@ -13,7 +13,7 @@ function transformStateWithClones(state, actions) {
   for (const doing of actions) {
     if (doing.type === `addProperties`) {
       currentState = { ...currentState, ...doing.extraData };
-      result.push({ ...currentState });
+      // result.push({ ...currentState });
     }
 
     if (doing.type === `removeProperties`) {
@@ -23,13 +23,14 @@ function transformStateWithClones(state, actions) {
         delete newcurrentState[remove];
       }
       currentState = newcurrentState;
-      result.push({ ...newcurrentState });
+      // result.push({ ...newcurrentState });
     }
 
     if (doing.type === `clear`) {
       currentState = {};
-      result.push({});
     }
+
+    result.push({ ...currentState });
   }
 
   return result;
